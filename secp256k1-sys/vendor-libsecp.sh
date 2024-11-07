@@ -116,7 +116,7 @@ find "$DIR" \
 
 cd "$SECP_SYS"
 # Update the `links = ` in the manifest file.
-sed -i -r "s/^links = \".*\"$/links = \"rustsecp256k1_v${SECP_VENDOR_VERSION_CODE}\"/" Cargo.toml
+sed -i -r "s/^links = \".*\"$/links = \"rustsecp256k1_v${SECP_VENDOR_VERSION_CODE}_ark\"/" Cargo.toml
 # Update the extern references in the Rust FFI source files.
 find "./src/" \
     -name "*.rs" \
@@ -124,4 +124,3 @@ find "./src/" \
     -print0 | xargs -0 sed -i -r "s/rustsecp256k1_v[0-9]+_[0-9]+_[0-9]+_(.*)([\"\(])/rustsecp256k1_v${SECP_VENDOR_VERSION_CODE}_\1\2/g"
 
 popd > /dev/null
-
